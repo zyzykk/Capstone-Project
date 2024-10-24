@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboPay</title>
+
+    <style>
+        body, html{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f7;
+    }
+    .header {
+        background-color: #260e69;
+        color: white;
+        padding: 10px;
+        height: 200px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .logo {
+        display: flex;
+        align-items: center;
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .logo img {
+        width: 100px;
+        margin-left: 20px;
+    }
+    .nav {
+        display: flex;
+        align-items: center;
+        margin: 40px 30px;
+        font-size: 16px;
+    }
+    .nav a {
+        color: white;
+        text-decoration: none;
+        margin-right: 16px;
+        font-weight: bold;
+    }
+    .container {
+        background-color: white;
+        border-radius: 20px;
+        margin: -110px 45px 0px;
+        padding: 40px;
+        position: relative;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .content {
+        margin-top: auto;
+    }
+    .overview-header {
+        text-align: center;
+        margin-bottom: 14px;
+    }
+    .overview-header h2 {
+        margin: 0;
+        font-size: 38px;
+    }
+    .date {
+        text-align: right;
+        margin-bottom: 16px;
+        color: black;
+        font-size: 14px;
+    }
+    .cards {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+    }
+    .card {
+        flex: 1;
+        padding: 20px;
+        border-radius: 20px;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+    .card:hover {
+        transform: scale(1.05);
+    }
+    .card.approved {
+        background-color: #b7e4c7;
+    }
+    .card.pending {
+        background-color: #fbd776;
+    }
+    .card.rejected {
+        background-color: #e0e0e0;
+    }
+    .card h3 {
+        margin: 0;
+        font-size: 22px;
+        color: black;
+    }
+    .card .number {
+        font-size: 64px;
+        font-weight: bold;
+        margin: 8px 0;
+    }
+    .card .amount {
+        font-size: 26px;
+        font-weight: bold;
+    }
+    .view-all {
+        display: block;
+        width: 200px;
+        height: 45px;
+        margin: 32px auto 0;
+        padding: 12px;
+        background-color: #260e69;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s;
+    } 
+    .view-all:hover {
+        transform: scale(1.05);
+    }
+    .applicationlist {
+    margin: 45px 45px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px 32px 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .search-bar {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 16px;
+    }
+    .search-bar input {
+        flex-grow: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .search-bar button {
+        background-color: #4a0e78;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        margin-left: 8px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 16px;
+    }
+    th, td {
+        text-align: center;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .pendingsection{
+        padding: auto 20px;
+    }
+    .status {
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 14px;
+    }
+    .drafted{
+        background-color: #ccedff;
+    }
+    .pending {
+        background-color: #fbd776;
+    }
+    .approved {
+        background-color: #b7e4c7;
+    }
+    .rejected {
+        background-color: #e0e0e0;
+    }
+    .download-icon {
+        width: 20px;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <!--Header-->
+    <div class="header">
+        <div class="logo">
+            <img src="robopay-mascot.png" alt="RoboPay"/>RoboPay
+        </div>
+        <div class="nav">
+            <a href="http://localhost/Capstone Project/Employee.html">Home</a>
+            <a href="http://localhost/Capstone Project/form.php">New PAF Submission</a>
+        </div>
+    </div>
+    <!--End Header-->
+    <!--Start Landing-->
+    <div class="container">
+        <div class="overview-header">
+            <h2>Overview</h2>
+        </div>
+        <p class="date">Up to Date: 16/10/2024</p>
+        <div class="cards">
+            <!--Card 1: Draft-->
+            <button class="card drafted">
+                <h3>Draft</h3>
+                <p>Total PAF</p>
+                <div class="number">2</div>
+                <p>Total Amount</p>
+                <div class="amount">RM 5,380</div>
+            </button>
+            <!--Card 2: Pending-->
+            <button class="card pending" onclick="location.href='#pending'">
+                <h3>Pending</h3>
+                <p>Total PAF</p>
+                <div class="number">3</div>
+                <p>Total Amount</p>
+                <div class="amount">RM 880</div>
+            </button>
+            <!--Card 3: Approved-->
+            <button class="card approved" onclick="location.href='#approved'">
+                <h3>Approved</h3>
+                <p>Total PAF</p>
+                <div class="number">10</div>
+                <p>Total Amount</p>
+                <div class="amount">RM 5,380</div>
+            </button>
+            <!--Card 4: Rejected-->
+            <button class="card rejected">
+                <h3>Rejected</h3>
+                <p>Total PAF</p>
+                <div class="number">5</div>
+                <p>Total Amount</p>
+                <div class="amount">RM 1,080</div>
+            </button>
+        </div>
+        <button class="view-all" onclick="location.href='#applicationlist'">View All</button>
+    </div>
+    <!--End Landing-->
+    <!--Start Application List-->
+    <div class="applicationlist" id="applicationlist">
+        <h1>Application List</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
+            <button>FILTER</button>
+            <button>X</button>
+        </div>
+        <!--List-->
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date Created</th>
+                        <th>Invoice No.</th>
+                        <th>Business Partner</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Download</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>16/10/2024</td>
+                        <td>00004</td>
+                        <td>Company X</td>
+                        <td>RM 2,000</td>
+                        <td><span class="status pending">Pending</span></td>
+                        <td>
+                            <img src="https://via.placeholder.com/20" alt="PDF" class="download-icon">
+                            <img src="https://via.placeholder.com/20" alt="Download" class="download-icon">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>14/10/2024</td>
+                        <td>00003</td>
+                        <td>Company Y</td>
+                        <td>RM 8,000</td>
+                        <td><span class="status pending">Pending</span></td>
+                        <td>
+                            <img src="https://via.placeholder.com/20" alt="PDF" class="download-icon">
+                            <img src="https://via.placeholder.com/20" alt="Download" class="download-icon">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>9/10/2024</td>
+                        <td>00001</td>
+                        <td>Company X</td>
+                        <td>RM 2,500</td>
+                        <td><span class="status approved">Approved</span></td>
+                        <td>
+                            <img src="https://via.placeholder.com/20" alt="PDF" class="download-icon">
+                            <img src="https://via.placeholder.com/20" alt="Download" class="download-icon">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>9/10/2024</td>
+                        <td>00001</td>
+                        <td>Company X</td>
+                        <td>RM 2,500</td>
+                        <td><span class="status rejected">Rejected</span></td>
+                        <td>
+                            <img src="https://via.placeholder.com/20" alt="PDF" class="download-icon">
+                            <img src="https://via.placeholder.com/20" alt="Download" class="download-icon">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--End Application List-->
+</body>
+</html>

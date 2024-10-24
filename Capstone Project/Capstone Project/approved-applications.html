@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approved Applications</title>
+    <link rel="stylesheet" href="approved-applications.css">
+<style>
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2980b9;
+    --background-color: #f5f9fc;
+    --text-color: #333;
+    --approved-color: #2ecc71;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: var(--approved-color);
+    text-align: center;
+}
+
+.search-filter {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+}
+
+#filterButton {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+#filterButton:hover {
+    background-color: var(--secondary-color);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+    background-color: var(--approved-color);
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+tr:hover {
+    background-color: #f0f0f0;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: var(--secondary-color);
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Approved Applications</h1>
+        <div class="search-filter">
+            <input type="text" id="searchInput" placeholder="Search approved applications...">
+            <button id="filterButton">Filter</button>
+        </div>
+        <table id="approvedApplicationTable">
+            <thead>
+                <tr>
+                    <th>Application No.</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Department</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be dynamically populated by JavaScript -->
+            </tbody>
+        </table>
+        <a href="ApplicationList.html" class="back-button">Back to All Applications</a>
+    </div>
+    <script src="approved-applications.js"></script>
+</body>
+</html>

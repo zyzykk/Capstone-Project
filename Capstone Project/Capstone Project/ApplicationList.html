@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application List</title>
+    <link rel="stylesheet" href="application-list-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2980b9;
+    --background-color: #f5f9fc;
+    --text-color: #333;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.kpi-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.kpi-card {
+    flex: 1;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    color: black;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.kpi-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.kpi-card h2 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.kpi-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.search-filter {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+}
+
+#filterButton {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+#filterButton:hover {
+    background-color: var(--secondary-color);
+}
+
+.filter-options {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.filter-group {
+    margin-bottom: 15px;
+}
+
+.filter-group h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.table-container {
+    max-height: 600px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+tr:hover {
+    background-color: #f0f0f0;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: var(--secondary-color);
+}
+
+.back-home {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.view-button {
+    padding: 5px 10px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.view-button:hover {
+    background-color: var(--primary-color);
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Application List</h1>
+        <div class="kpi-cards">
+            <div class="kpi-card" data-status="Pending">
+                <h2>Pending Applications</h2>
+                <p class="kpi-number" id="pendingCount">0</p>
+            </div>
+            <div class="kpi-card" data-status="Approved">
+                <h2>Approved Applications</h2>
+                <p class="kpi-number" id="approvedCount">0</p>
+            </div>
+            <div class="kpi-card" data-status="Rejected">
+                <h2>Rejected Applications</h2>
+                <p class="kpi-number" id="rejectedCount">0</p>
+            </div>
+        </div>
+        <div class="search-filter">
+            <input type="text" id="searchInput" placeholder="Search applications...">
+            <button id="filterButton">Filter</button>
+        </div>
+        <div id="filterOptions" class="filter-options" style="display: none;">
+            <div class="filter-group">
+                <h3>Sort by Date</h3>
+                <label><input type="checkbox" id="sortByDate"> Latest to Oldest</label>
+            </div>
+            <div class="filter-group">
+                <h3>Department</h3>
+                <div id="departmentFilters"></div>
+            </div>
+            <div class="filter-group">
+                <h3>Status</h3>
+                <div id="statusFilters"></div>
+            </div>
+        </div>
+        <div class="table-container">
+            <table id="applicationTable">
+                <thead>
+                    <tr>
+                        <th>Application No.</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Department</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be dynamically populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <a href="http://localhost/Capstone Project/homepage.php" class="button back-home">Back to Home</a>
+    </div>
+    <script src="ApplicationList.js"></script>
+</body>
+</html>
